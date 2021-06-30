@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+.pg-heading {
+    color: darkcyan;
+    font-weight: 700;
+}
+.info-box {
+    margin-top: 10px;
+}
+.info-box p {
+    line-height: 6px;
+}

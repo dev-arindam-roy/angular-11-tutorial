@@ -1,0 +1,68 @@
+<h2 class="pg-heading">Data Binding:</h2>
+<hr/>
+
+<div>
+    <h4>Property & Attribute Binding:</h4>
+    <img [src]="imageUrl" [width]="imgWidth" [height]="imgHeight" [border]="imgBorder">
+    <div 
+        [innerHtml]="htmlText" 
+        [style.margin-top.px]="10" 
+        [style.color]="'red'" 
+        [style.background-color]="'yellow'"
+        [class.text-decoration-line-through]="true"
+        [class.text-uppercase]="true"
+        [class]="'fw-bolder text-center'"></div>
+
+    <p [style.font-size.px]="isTrue ? 22 : 40">arindam.roy.developer@gmail.com</p>
+</div>
+
+<div>
+    <table [attr.width]="300" [attr.border]="1">
+        <tr><td [attr.colspan]="3">three</td></tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <img src="/assets/images/binding-1.png" [style.width.%]="75">
+</div>
+
+<div>
+    <img src="/assets/images/binding-2.png" [style.width.%]="75" [style.margin-left.px]="10">
+</div>
+
+<hr/>
+
+<div>
+    <h4>2 way binding</h4>
+    <label>Type Text:</label>
+    <input type="text" [class]="'form-control mt-3'" placeholder="Type any text" [value]="textboxData">
+    <b>with html persing</b><br/>
+    <span [innerHtml]="textboxData"></span> <br/><br/>
+    <b>without html persing</b><br/>
+    <span>{{textboxData}}</span>
+</div>
+
+<div>
+    <h4>Example 1:</h4>
+    <label>Type Text:</label>
+    <input type="text" [class]="'form-control mt-3'" placeholder="Type any text" [(ngModel)]="textboxData2">
+    <span>{{textboxData2}}</span>
+</div>
+
+<div>
+    <h4>Example 2:</h4>
+    <input type="text" [(ngModel)]="num1">
+    <input type="text" [(ngModel)]="num2">
+    <div>
+        <button (click)="add()" [disabled]="num1 == 0 || num2 == 0">Add</button>
+        <button (click)="sub()" [disabled]="num1 == 0 || num2 == 0">Sub</button>
+        <button (click)="mul()" [disabled]="num1 == 0 || num2 == 0">Mul</button>
+        <button (click)="div()" [disabled]="num1 == 0 || num2 == 0">Div</button>
+        {{result}}
+    </div>
+</div>

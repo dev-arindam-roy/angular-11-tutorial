@@ -1,0 +1,65 @@
+<h2 class="pg-heading">TypeScript:</h2>
+<hr/>
+<h4>Setup</h4>
+<div class="info-box">
+    <p>npm install -g typescript</p>
+    <p>tsc -v</p>
+    <p>tsc main</p>
+    <p>tsc main.js --watch</p>
+    <p>tsc main --watch</p>
+    <p>node main</p>
+</div>
+
+<h4>Type</h4>
+<div class="info-box">
+    <p>- boolean</p>
+    <p>- number</p>
+    <p>- string</p>
+    <p>- null</p>
+    <p>- undefined</p>
+    <p>- any</p>
+    <p>- array</p>
+    <p>- void</p>
+    <p>- null</p>
+    <p>- enum</p>
+    <p>- tuple</p>
+    <p>- generics</p>
+</div>
+
+<h4>Example</h4>
+<div class="info-box">
+    <p>let isActive: boolean = null;</p>
+    <p>let myName: string = undefined;</p>
+</div>
+
+<h4>Example</h4>
+<div class="info-box">
+    <p>let list: number[] = [1,2,3];</p>
+    <p>let list: Array'<'number'>' = [1,2,3];</p>
+    <p>let name: string[] = ['xxx', 'wwww'];</p>
+    <p>let user: [string, number] = ['Ari', '35'];</p>
+</div>
+
+<h4>Example</h4>
+<div>
+    let a: number | boolean; <br/>
+    a = 20; <br/>
+    a = true;
+</div>
+
+<h4>Example: function declare</h4>
+<div>
+    function add(num1: number, num2: number): number <br/>
+        return num1 + num2; <br/><br/>
+    
+    
+    function add(num1: number, num2: number = 20 ): number <br/>
+        return num1 + num2; 
+    
+</div>
+
+<h4>Example: function  with optional param</h4>
+<div>
+    function add(num1: number, num2?: number): number <br/>
+        return num1 + num2; 
+</div>

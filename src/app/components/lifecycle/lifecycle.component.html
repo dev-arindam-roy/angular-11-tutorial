@@ -1,0 +1,11 @@
+<h2 class="pg-heading">Lifecycle: Check in console also</h2>
+<hr/>
+<button class="btn btn-primary" (click)="lifeCycleSteps()">Lifycycle Steps</button>
+<app-child [loadList]="getLoad">
+    <h4>All Hooks</h4>
+    <img src="/assets/images/lifecycle.png" [style.width.%]="75">
+    <h4>Onload Console</h4>
+    <img src="/assets/images/lifecycle-console1.png" [style.width.%]="75">
+    <h4>After Button Click Console</h4>
+    <img src="/assets/images/lifecycle-console2.png" [style.width.%]="75">
+</app-child>

@@ -1,0 +1,90 @@
+<h2 class="pg-heading">NgSwitch ([ngSwitch], *ngSwitchCase)</h2>
+<hr/>
+
+<div>
+    <h4>Example 1:</h4>
+    <div *ngFor="let x of dataObject">
+        <input type="radio" name="op1" value="{{x.country}}" (change)="getCountryDetails1($event)"> {{x.country}}
+    </div>
+    
+    <div [ngSwitch]="country">
+        <div *ngFor="let c of dataObject">
+            <div *ngSwitchCase="c.country">
+                {{country}} <hr/>
+                <div *ngIf="countryUsers.length > 0; else noUserFoundBlock">
+                    <ul *ngFor="let obj of countryUsers">
+                        <b>{{obj.name}}</b> | age is : {{obj.age}}
+                    </ul>
+                </div>
+                <ng-template #noUserFoundBlock>
+                    <p [ngClass]="['text-danger']">No user Found!</p>
+                </ng-template>
+            </div>
+        </div>
+        <div *ngSwitchDefault>Select Country</div>
+    </div>
+</div>
+
+<hr/>
+
+<div>
+    <h4>Example 2:</h4>
+    <select (change)="ratingChange($event)">
+        <option value="">Rating</option>
+        <option *ngFor="let x of [1,2,3,4,5]" value="{{x}}">{{x}}</option>
+    </select>
+    <ng-container [ngSwitch]="rating">
+        <div *ngFor="let r of [1,2,3,4,5]">
+            <div *ngSwitchCase="r">
+                <div *ngIf="usersByRating.length > 0; else noRatingUserFoundBlock">
+                    <ul>
+                        <li *ngFor="let usr of usersByRating">
+                            {{usr}}
+                            <span *ngFor="let s of counter(rating)">
+                                <span [ngClass]="{'text-danger' : rating == 1, 'text-warning' : rating == 2, 'text-secondary' : rating == 3, 'text-primary' : rating == 4, 'text-success' : rating == 5}">&#9733;</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <ng-template #noRatingUserFoundBlock>
+                    <span [ngClass]="['text-danger']">No User Found!</span>
+                </ng-template>
+            </div>
+        </div>
+        <div *ngSwitchDefault>
+            <span [ngClass]="['text-primary']">Get user by rating, Select the rating</span>
+        </div>
+    </ng-container>
+</div>
+
+<hr/>
+
+<div>
+    <h4>Application:</h4>
+    <select (change)="minMaxRatingChange($event, 'MIN')">
+        <option value="0">Min Rating</option>
+        <option *ngFor="let x of counter(6); let i = index" value="{{i+1}}">{{i+1}}</option>
+    </select>
+    <select (change)="minMaxRatingChange($event, 'MAX')">
+        <option value="0">Max Rating</option>
+        <option *ngFor="let x of counter(6); let i = index" value="{{i+1}}">{{i+1}}</option>
+    </select>
+    <div *ngIf="isChanged">
+        <div *ngIf="usersByMinMaxRating.length > 0; else noRecordBlock">
+            <label><strong>Records: {{usersByMinMaxRating.length}}</strong></label>
+            <table class="table table-bordered mt-3">
+                <tr *ngFor="let usr of usersByMinMaxRating; let i = index">
+                    <td><b>{{i+1}}.</b> <span [ngStyle]="{'margin-left.px' : 10}">{{usr.name}}</span></td>
+                    <td>
+                        <span *ngFor="let s of counter(usr.rating)">
+                            <span [ngClass]="{'text-danger' : usr.rating == 1, 'text-warning' : usr.rating == 2, 'text-secondary' : usr.rating == 3, 'text-primary' : usr.rating == 4, 'text-success' : usr.rating == 5}">&#9733;</span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <ng-template #noRecordBlock>
+            <span [ngClass]="['text-danger']">No Record Found</span>
+        </ng-template>
+    </div>
+</div>

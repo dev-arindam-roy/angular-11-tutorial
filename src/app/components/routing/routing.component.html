@@ -1,0 +1,71 @@
+<h2 class="pg-heading">Routing & Navigation</h2>
+<hr/>
+
+<div>
+    <h4>Examples:</h4>
+    <ul>
+        <li>
+            <a [routerLink]="['/normal-redirect']">Normal Redirection</a>
+        </li>
+        <li>
+            <a [routerLink]="['/local-redirect']">Local Redirection</a>
+        </li>
+        <li>
+            <a [routerLink]="['/absolute-redirect']">Absolute Redirection</a>
+        </li>
+        <li>
+            <a [routerLink]="['/albal-link']">404 Redirection</a>
+        </li>
+        <li>
+            <a [routerLink]="['/route-parameter', paramId, paramName]">Link Route Param Redirection</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" (click)="setParams()">Event Route Param Redirection</a>
+        </li>
+        <li>
+            <a 
+            [routerLink]="['/route-parameter', paramId, paramName]"
+            [queryParams]="queryStr"
+            [fragment]="fragtStr">Link Route with Param, QueryString, Fragment Redirection</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" (click)="setParamsWithQueryStringFragment()">Event Route with Param, QueryString, Fragment Redirection</a>
+        </li>
+        <li>
+            <a [routerLink]="['/route-parameter', {id: '' , name: '', age: ''}]">Link Optional Parameter</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" (click)="setOptionalParams()">Event Optional Parameter</a>
+        </li>
+        <li>
+            <a [routerLink]="['/route-parameter']">Link Optional Parameter - no data</a>
+        </li>
+        <li>
+            <a [routerLink]="['/route-static-data']">Static Data in Route</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a [routerLink]="['/nested-routing']">Nested Routing | Child Routing</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a 
+                [routerLink]="['/preserve-query-string', 6789, 'block', 'youtube-block']"
+                [queryParams]="queryStr"
+                [fragment]="fragtStr">Preserve Query String</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a 
+                [routerLink]="['/merge-query-string', 6789, 'block', 'youtube-block']"
+                [queryParams]="queryStr"
+                [fragment]="fragtStr">Merge Query String</a>
+        </li>
+    </ul>
+</div>

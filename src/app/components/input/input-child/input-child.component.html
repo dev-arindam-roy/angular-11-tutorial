@@ -1,0 +1,11 @@
+<div>
+    <h4>Example 1:</h4>
+    <span>ID: {{uid}}</span> | <span>NAME: {{unm}} | isDeveloper: {{idDev ? 'YES' : 'NO'}}</span>
+    <p>
+        Known Languages: <span *ngFor="let lng of langs">{{lng}}, </span>
+    </p>
+    <p>
+        Known Skills: 
+        <li *ngFor="let skl of skls">{{skl.name}} & Rate:{{skl.rating}}</li>
+    </p>
+</div>

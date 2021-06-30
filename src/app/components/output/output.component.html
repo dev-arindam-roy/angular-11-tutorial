@@ -1,0 +1,8 @@
+<h2 class="pg-heading">@Output() [Child -> Parent]</h2>
+<hr/>
+
+<app-add-user (addThisUser)="addUser($event)" [editUser]="editUserData" (updateTheUser)="updateUser($event)"></app-add-user>
+
+<div *ngIf="userList.length > 0">
+    <app-show-users *ngFor="let user of userList; let i = index" [singleUser]="user" [userIndex]="i" (deleteUser)="deleteTheUser($event)" (editUser)="editTheUser($event)"></app-show-users>
+</div>

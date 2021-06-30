@@ -1,0 +1,21 @@
+<h3>Add User</h3>
+<div class="row">
+    <div class="col-sm-3">
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="userName" class="form-control" placeholder="Name">
+    </div>
+    <div class="col-sm-3">
+        <label>Email:</label>
+        <input type="text" [(ngModel)]="userEmail" class="form-control" placeholder="Email">
+    </div>
+    <div class="col-sm-3">
+        <label>Mobile:</label>
+        <input type="text" [(ngModel)]="userMobile" class="form-control" placeholder="Mobile">
+    </div>
+    <div class="col-sm-3" *ngIf="userEditIndex == -1">
+        <button [ngStyle]="{'margin-top.px' : 22}" [ngClass]="['btn', 'btn-sm']" [class.btn-success]="true" [disabled]="userName == '' || userEmail == ''" (click)="addNewUser()">Add New User</button>
+    </div>
+    <div class="col-sm-3" *ngIf="userEditIndex != -1">
+        <button [ngStyle]="{'margin-top.px' : 22}" [ngClass]="['btn', 'btn-sm']" [class.btn-success]="true" [disabled]="userName == '' || userEmail == ''" (click)="editThisUser()">Edit The User</button>
+    </div>
+</div>

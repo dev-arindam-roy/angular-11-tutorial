@@ -1,0 +1,41 @@
+<h2 class="pg-heading">Route Gaurd: CanActivate, CanActivateChild, CanDeactivate</h2>
+<hr/>
+<button class="btn btn-success" (click)="doLogin()" *ngIf="!authStatus">Login</button>
+<button class="btn btn-danger" (click)="doLogout()" *ngIf="authStatus">Logout</button>
+
+<ul>
+    <li>
+        <a [routerLink]="['/after-login-access']">After Login, Can Access this URL. Otherwise it redirect to Home/Root</a>
+    </li>
+</ul>
+
+
+<h4>Child Route Guard</h4>
+<ul>
+    <li>
+        <a [routerLink]="['/route-guards/child-1', 1, 'Arindam Roy']">Child Route 1</a>
+    </li>
+    <li>
+        <a [routerLink]="['/route-guards/child-2', 2, 'Santanu Roy']">Child Route 2</a>
+    </li>
+</ul>
+
+
+<hr/>
+<h4>Example: Detect Changes</h4>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="mb-1">
+            <input type="text" [(ngModel)]="editName" class="form-control" placeholder="Name">
+        </div>
+        <div class="mb-1">
+            <input type="text" [(ngModel)]="editEmail" class="form-control" placeholder="Email">
+        </div>
+        <div class="mb-1">
+            <input type="text" [(ngModel)]="editPhno" class="form-control" placeholder="Mobile">
+        </div>
+        <div class="mb-1">
+            <button type="button" class="btn btn-sm btn-success" (click)="demoUpdate()">Done</button>
+        </div>
+    </div>
+</div>

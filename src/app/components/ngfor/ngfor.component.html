@@ -1,0 +1,78 @@
+<h2 class="pg-heading">NgFor (*ngFor)</h2>
+<hr/>
+
+<div>
+    <h4>Example 1:</h4>
+    <div *ngIf="userDataObject.length > 0; else noUserBlock">
+        <div class="mt-2 mb-3" *ngIf="!isSearch">
+            <select (change)="searchRecords($event, 'company')">
+                <option value="">COMPANY</option>
+                <option *ngFor="let com of getFilterData('company')" value="{{com}}">{{com}}</option>
+            </select>
+            <select (change)="searchRecords($event, 'skill')">
+                <option value="">SKILL</option>
+                <option *ngFor="let skl of getFilterData('skill')" value="{{skl}}">{{skl}}</option>
+            </select>
+            <select (change)="searchRecords($event, 'salary')">
+                <option value="0">SALARY</option>
+                <option *ngFor="let sal of getRange(15000, 90000, 5000)" value="{{sal}}">{{sal}}</option>
+            </select>
+            <select (change)="searchRecords($event, 'designation')">
+                <option value="">DESIGNATION</option>
+                <option *ngFor="let deg of getFilterData('designation')" value="{{deg}}">{{deg}}</option>
+            </select>
+            <select (change)="searchRecords($event, 'age')">
+                <option value="0">AGE</option>
+                <option *ngFor="let ag of getRange(15, 65, 5)" value="{{ag}}">{{ag}}</option>
+            </select>
+            <select (change)="searchRecords($event, 'married')">
+                <option value="">IS MARRIED</option>
+                <option *ngFor="let mar of getFilterData('married')" value="{{mar}}">{{mar ? 'YES' : 'NO'}}</option>
+            </select>
+        </div>
+        <div class="mt-2 mb-3" *ngIf="isSearch">
+            <button class="btn btn-sm btn-danger" (click)="resetData()">Reset & Again Search?</button>
+            <p><label>Current search by: <b>{{currentSearchBy}}</b></label></p>
+        </div>
+        <label><strong>Total User: {{userDataObject.length}}</strong></label>
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Salary</th>
+                    <th>Age</th>
+                    <th>Designation</th>
+                    <th>Skills</th>
+                    <th>Is Married</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userDataObject; let i = index; let oddRow = odd; let evenRow = even; let firstRow = first; let lastRow = last" [ngStyle]="{'background-color': evenRow ? '#fafafa' : '#fffef5'}">
+                    <td [ngClass]="{'bg-success' : firstRow, 'bg-warning' : lastRow}">{{i+1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.company}}</td>
+                    <td [ngClass]="['text-success']" [ngStyle]="{'font-weight' : 'bold'}">{{user.salary}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.designation}}</td>
+                    <td>
+                        <span *ngIf="user.skills.length > 0; else noSkillsBlock">
+                            <li *ngFor="let skl of user.skills">{{skl.name}} ({{skl.rating}})</li>
+                        </span>
+                        <ng-template #noSkillsBlock>
+                            <span [ngClass]="['text-danger']">No Skills</span>
+                        </ng-template>
+                    </td>
+                    <td [ngClass]="{'text-danger' : !user.isMarried, 'text-success' : user.isMarried}" [ngStyle]="{'font-weight' : 'bold'}">
+                        <span>{{user.isMarried ? 'YES' : 'NO'}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noUserBlock>
+        <p><span [ngClass]="['text-danger']">No User Found!</span></p>
+        <button class="btn btn-sm btn-danger" (click)="resetData()">Reset & Again Search?</button>
+    </ng-template>
+</div>

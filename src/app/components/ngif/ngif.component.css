@@ -1,0 +1,15 @@
+.box{
+    width: 100px;
+    height: 85px;
+    float: left;
+    margin-left: 6px;
+}
+.blue {
+    background-color: darkslateblue;
+}
+.red {
+    background-color: firebrick;
+}
+.green {
+    background-color: forestgreen;
+}

@@ -1,0 +1,57 @@
+<h2 class="pg-heading">#Local Reference</h2>
+<hr/>
+
+<div>
+    <h4>Example 1: Add User</h4>
+    <div class="mb-2">
+        <input type="text" class="form-control" #userName placeholder="Name">
+        {{userName.value}}
+    </div>
+    <div class="mb-2">
+        <input type="text" class="form-control" #userEmail placeholder="Email">
+    </div>
+    <div class="mb-2">
+        <button class="btn btn-success" (click)="addUser(userName, userEmail)">Add User</button>
+    </div>
+
+    <ul class="mt-5" *ngIf="userList.length > 0">
+        <li *ngFor="let usr of userList; let i = index">{{i+1}}. {{usr.name}} - {{usr.email}}</li>
+    </ul>
+</div>
+
+<hr/>
+
+<div>
+    <h4>Example 2: Add Employee</h4>
+    <div class="mb-2">
+        <input type="text" class="form-control" #empName placeholder="Name">
+    </div>
+    <div class="mb-2">
+        <input type="text" class="form-control" #empEmail placeholder="Email">
+    </div>
+    <div class="mb-2">
+        <input type="text" class="form-control" #empPhno placeholder="Mobile">
+    </div>
+    <div class="mb-2">
+        <button class="btn btn-success" (click)="addEmp()">Add Employee</button>
+    </div>
+
+    <ul class="mt-5" *ngIf="empList.length > 0">
+        <li *ngFor="let emp of empList; let i = index">{{i+1}}. {{emp.name}} - {{emp.email}} - {{emp.phno}}</li>
+    </ul>
+</div>
+
+<hr/>
+<div>
+    <h4>Example 3: HTMLInputElement - document.getElementById</h4>
+    <div class="mb-2">
+        <input type="text" class="form-control" id="devName" placeholder="Name">
+    </div>
+    <div class="mb-2">
+        <button class="btn btn-success" (click)="addDev()">Add Developer</button>
+    </div>
+
+    <ul class="mt-5" *ngIf="devList.length > 0">
+        <li *ngFor="let dev of devList; let i = index">{{i+1}}. {{dev}}</li>
+    </ul>
+</div>

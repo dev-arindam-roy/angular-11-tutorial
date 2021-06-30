@@ -1,0 +1,74 @@
+<h1>Landing View...</h1>
+<div class="mt-5">
+    <button [class.btn-danger]="true" [ngClass]="['btn', 'btn-sm']" (click)="backToRouting()">Routing</button>
+    <button [class.btn-primary]="true" [ngClass]="['btn', 'btn-sm']" [ngStyle]="{'margin-left.px' : 5}" (click)="backToHome()">Home</button>
+    <button class="btn btn-warning" [class.btn-sm]="true" [style.margin-left.px]="5" (click)="back()">Back</button>
+</div>
+
+<div class="mt-5" *ngIf="userParams.id != undefined">
+    <h4>Getting data from url parameter</h4>
+    <p>Name: {{userParams.name}}</p>
+    <p>ID: {{userParams.id}}</p>
+
+    <li><a [routerLink]="['/route-parameter', 65, 'Sayan Dutta']">Link Param</a></li>
+    <li><a href="javascript:void(0);" (click)="eventParam()">Event Param</a></li>
+</div>
+
+<div class="mt-5" *ngIf="getPage != undefined">
+    <h4>Getting data from url Query String</h4>
+    <span>Page Number: {{getPage}}</span> <br/>
+    <span>Category: {{getCategory}}</span> <br/>
+    <span>Price: {{getPrice | currency:'INR':'symbol':'1.2-2'}}</span> <br/>
+    <span>Order: {{isDesc ? 'Desc' : 'Asc'}}</span> <br/>
+    <span>Fragment: {{getFrag}}</span>
+
+    <li>
+        <a 
+            [routerLink]="['/route-parameter', 675, 'Anushka Roy']"
+            [queryParams]="{page: 10, category: 'Laptop', price: 55890, desc: true}"
+            [fragment]="'search'">Link Param + Query String + Fragment</a>
+    </li>
+
+    <li><a href="javascript:void(0);" (click)="eventParamQueryStringFragment()">Event Param + Query String + Fragment</a></li>
+</div>
+
+<hr/>
+
+<div *ngIf="isYoutubeBlock">
+    <h4>Example: Preserve & Merge Query String</h4>
+    <div class="row">
+        <div class="col-sm-4">
+            <ul>
+                <li>
+                    <a [routerLink]="['/preserve-query-string', 6789, 'block', 'youtube-block']">No Preserve</a>
+                </li>
+                <li>
+                    <a 
+                        [routerLink]="['/preserve-query-string', 6789, 'block', 'youtube-block']"
+                        [queryParamsHandling]="'preserve'">Preserve by link</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" (click)="preserveQueryString()">Preserve by event</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a  [routerLink]="['/merge-query-string', 6789, 'block', 'youtube-block']"
+                        [queryParams]="{product: 'electronics'}"
+                        [queryParamsHandling]="'merge'">Merge Query String - Link</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" (click)="mergeQueryString()">Merge Query String - Event</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <h4>Preserve & Merge Query String</h4>
+            {{currentQueryString | json}}
+        </div>
+    </div>
+</div>
+
+
+<h4>Route Static Data - not show in url</h4>
+{{staticRouteData|json}}

@@ -1,0 +1,160 @@
+<h2 class="pg-heading">Template Driven Form</h2>
+<hr/>
+
+<h4>Example 1:</h4>
+<div class="row">
+    <div class="col-sm-6">
+        <!--
+            Analysis #1
+            <form name="frm" id="frm" (ngSubmit)="onFormSubmit(regFrm)" #regFrm>
+        -->
+        <!--
+            Analysis #2
+            <form name="frm" id="frm" (ngSubmit)="onFormSubmit(regFrm)" #regFrm="ngForm">
+        -->
+        <form name="frm" id="frm" class="regform" (ngSubmit)="onFormSubmit()" #regFrm="ngForm" novalidate>
+
+            <label><strong>Form Data:</strong></label><br/>
+            {{regFrm.value | json}}
+            
+            <br/><br/>
+            <label><strong>SubmittedUserData Data:</strong></label><br/>
+            {{submittedUserData | json}}
+            <br/><br/>
+
+
+            <!-- form grouping -->
+            <div class="alert alert-danger" *ngIf="user.invalid && user.touched">User Information Invalid</div>
+            <div ngModelGroup="userDetails" #user="ngModelGroup">
+                <div class="form-group mb-2">
+                    <label for="firstName">First Name:<span class="text-danger">*</span></label>
+                    <input type="text" 
+                        class="form-control" 
+                        name="first_name" 
+                        id="firstName" 
+                        placeholder="First Name" 
+                        [class.is-invalid] = "fname.invalid && fname.touched" 
+                        [class.is-valid] = "fname.valid && fname.touched"
+                        [(ngModel)]="submittedUserData.first_name" 
+                        minlength="3"
+                        maxlength="10"
+                        pattern="^[a-zA-Z]+$"
+                        #fname="ngModel" 
+                        required>
+                        <div *ngIf="fname.invalid && (fname.dirty || fname.touched || isFormSubmitted)">
+                            <span class="help-text text-danger">Invalid First Name</span>
+                            <div *ngIf="fname.errors?.required">
+                                <span class="help-text text-danger">Please enter First Name</span>
+                            </div>
+                            <div *ngIf="fname.errors?.minlength">
+                                <span class="help-text text-danger">Minlength 3</span>
+                            </div>
+                            <div *ngIf="fname.errors?.pattern">
+                                <span class="help-text text-danger">Pattern not match</span>
+                            </div>
+                        </div>
+                    <span class="help-text text-danger" 
+                        *ngIf="fname.invalid && (fname.touched || isFormSubmitted)">Please enter first name</span>
+                    <!-- <span class="help-text text-danger" *ngIf="regFrm.controls.first_name.invalid && regFrm.controls.first_name.touched">Please enter first name</span> -->
+                </div>
+                <div class="form-group mb-2">
+                    <label for="lastName">Last Name:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="last_name" id="lastName" placeholder="Last Name" ngModel #lname="ngModel" required>
+                    <span class="help-text text-danger" *ngIf="lname.invalid && lname.touched">Please enter last name</span>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="emailId">Email Id:<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" name="email" id="emailId" placeholder="Email Address" ngModel #email="ngModel" required email>
+                    <span class="help-text text-danger" *ngIf="email.invalid && email.touched">Please enter email-id</span>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="mobileNo">Mobile Number:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="mobile" id="mobileNo" placeholder="Mobile Number" ngModel #phno="ngModel" required>
+                    <span class="help-text text-danger" *ngIf="phno.invalid && phno.touched">Please enter mobile number</span>
+                </div>
+            </div>
+
+
+            <div class="form-group mb-2">
+                <label for="address">Address:</label>
+                <textarea class="form-control" name="address" id="address" placeholder="Address" ngModel #address="ngModel" required></textarea>
+                <span class="help-text text-danger" *ngIf="address.invalid && address.touched">Please enter address</span>
+            </div>
+            <div class="form-group mb-2">
+                <label>Sex:</label>
+                <div>
+                    <div *ngFor="let sx of sex; let i = index" [style.float]="'left'" [ngStyle]="{'margin-left.px' : 5}">
+                        <input type="radio" name="gender" id="sex{{i}}" value="{{sx}}" [ngModel]="'Male'" #gender="ngModel" required>
+                        <label for="sex{{i}}" [ngStyle]="{'margin-left.px' : 2}">{{sx}}</label>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+
+            <!-- form grouping -->
+            <div class="alert alert-danger" *ngIf="tech.invalid && tech.touched">Technical Information Invalid</div>
+            <div ngModelGroup="userTechInfo" #tech="ngModelGroup">
+                <div class="form-group mb-2 mt-3">
+                    <label for="company">Company:</label>
+                    <select class="form-control" name="company" id="company" [ngModel]="5" #orgz="ngModel">
+                        <option *ngFor="let com of company" value="{{com.id}}">{{com.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group mb-2 mt-3">
+                    <label for="designation">Designation:<span class="text-danger">*</span></label>
+                    <select class="form-control" name="designation" id="designation" (change)="getSkills($event)" ngModel #techSkill="ngModel" required>
+                        <option value="">-Select-</option>
+                        <option *ngFor="let deg of designation" value="{{deg.id}}">{{deg.name}}</option>
+                    </select>
+                    <span class="help-text text-danger" *ngIf="techSkill.invalid && techSkill.touched">Please select your designation</span>
+                </div>
+                <div class="form-group mt-3 mb-3" *ngIf="setSkills.length > 0">
+                    <label>Select Skill(s):<span class="text-danger">*</span></label>
+                    <div class="mt-2">
+                        <div *ngFor="let degSkill of setSkills; let i = index">
+                            <input type="checkbox" name="degskill" id="{{degSkill}}{{i}}" [value]="degSkill" ngModel>
+                            <label for="{{degSkill}}{{i}}" [ngStyle]="{'margin-left.px' : 2}">{{degSkill}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group mb-2 mt-3">
+                <label>Language(s):<span class="text-danger">*</span></label>
+                <div class="mt-2">
+                    <div *ngFor="let lng of language; let i = index">
+                        <input type="checkbox" name="worklanguage{{i}}" id="worklanguage{{i}}" value="{{lng.code}}" (change)="worklanguageChangeEvent($event, lng.code)" [ngModel]="lng.selected" #worklanguage="ngModel" required>
+                        <label for="worklanguage{{i}}" [ngStyle]="{'margin-left.px' : 2}">{{lng.name}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-2 mt-3">
+                <label style="margin-right: 5px;">Are you agree with our <b>Terms & Conditions</b>?</label>
+                <input type="checkbox" name="agree" value="yes" ngModel #agree="ngModel" required>Yes
+                <div>
+                    <span class="help-text text-danger" *ngIf="agree.invalid && agree.touched">Please agree with terms & conditions</span>
+                </div>
+            </div>
+            <div class="form-group mb-2 mt-3">
+                <button type="submit" class="btn btn-success" [disabled]="regFrm.invalid">Register Details</button>
+                <button type="button" class="btn btn-danger" style="margin-left: 10px;" (click)="reset()">Reset Form</button>
+            </div>
+        </form>
+        <div class="mt-5">
+            {{submittedUserData|json}}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h4>Note:</h4>
+        <b>ngModel</b> = No Bindinng <br/>
+        <b>ngModel</b> = "some_value" = One way Binding <br/>
+        <b>[ngModel]</b> = "some_value" = One way Binding <br/>
+        <b>[(ngModel)]</b> = "some_value" Two way Binding <br/>
+        <br/> <br/>
+        <div>
+            <button class="btn btn-primary" [ngStyle]="{'width.%' : 100}" (click)="setFill()">Set Value (Need all forms data)</button> <br/><br/>
+            <button class="btn btn-warning" [ngStyle]="{'width.%' : 100}" (click)="patchFill()">Patch Value (Partial data)</button>
+        </div>
+    </div>
+</div>

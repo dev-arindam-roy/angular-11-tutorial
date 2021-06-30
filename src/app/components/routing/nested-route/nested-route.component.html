@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h4>Static Link Routes</h4>
+        <ul>
+            <li>
+                <a [routerLink]="['/nested-routing', 1, 'Arindam Roy']">User #001</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', 2, 'Santanu Roy']">User #002</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', 3, 'Anushka Roy']">User #003</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', 4, 'Sourav Roy']">User #004</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', 1, 'Ritu Roy']">User #005</a>
+            </li>
+        </ul>
+        <h4>Dynamic Link Routes</h4>
+        <ul>
+            <li *ngFor="let u of users">
+                <a [routerLink]="['/nested-routing', u.id, u.name]">User #00{{u.id}}</a>
+            </li>
+        </ul>
+        <h4>Dynamic Event Routes</h4>
+        <ul>
+            <li *ngFor="let u of users">
+                <a href="javascript:void(0);" (click)="showUserDetails(u.id, u.name)">User #00{{u.id}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

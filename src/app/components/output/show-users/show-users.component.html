@@ -1,0 +1,10 @@
+<div class="mt-2 mb-3">
+    <h4>User No: #{{userIndex+1}}</h4>
+    <p>
+        <span><strong>Name:</strong>{{singleUser.name}}</span> | 
+        <span><strong>Email:</strong>{{singleUser.email}}</span> |
+        <span><strong>Mobile:</strong>{{singleUser.mobile}}</span> <br/>
+        <button class="btn btn-sm btn-danger" (click)="onDeleteUser(singleUser)">Delete</button>
+        <button class="btn btn-sm btn-primary" [ngStyle]="{'margin-left.px' : 5}" (click)="onEditUser(singleUser)">Edit</button>
+    </p>
+</div>

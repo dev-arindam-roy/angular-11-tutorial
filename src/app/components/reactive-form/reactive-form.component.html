@@ -1,0 +1,118 @@
+<h2 class="pg-heading">Reactive Form</h2>
+<hr/>
+
+<h4>Example 1</h4>
+<div class="row">
+    <div class="col-sm-4">
+        <div *ngIf="isLoading">
+            <app-loading-spiner></app-loading-spiner>
+        </div>
+        <form name="frm" class="regform" [formGroup]="registrationForm" (ngSubmit)="formSubmit()" novalidate>
+            <div class="form-group mt-3 mb-3">
+                <label for="firstName">First Name: <span class="text-danger">*</span></label>
+                <input type="text" formControlName="first_name" name="first_name" id="firstName" class="form-control" placeholder="First Name">
+                <div *ngIf="getControl.first_name.touched && getControl.first_name.invalid" class="text-danger">
+                    <!-- <div *ngIf="getControl.first_name.errors?.required">First Name is required.</div> -->
+                    <!-- <div *ngIf="getControl.first_name.errors?.minlength">Minimum 3 character are required.</div> -->
+
+                    <div *ngIf="getControl.first_name.hasError('required')">First Name is required.</div>
+                    <div *ngIf="getControl.first_name.hasError('minlength')">Minimum 3 character are required.</div>
+                    
+                </div>
+                <!-- also you can use this way-->
+                Invalid: {{registrationForm.get('first_name')?.invalid}}
+                Required: {{registrationForm.get('first_name')?.errors?.required}}
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <label for="lastName">Last Name: <span class="text-danger">*</span></label>
+                <input type="text" formControlName="last_name" name="last_name" id="lastName" class="form-control" placeholder="Last Name">
+                <div *ngIf="getControl.last_name.touched && getControl.last_name.invalid" class="text-danger">
+                    <div *ngIf="getControl.last_name.errors?.required">Last Name is required.</div>
+                </div>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <label>Sex:</label>
+                <div *ngFor="let sx of sex; let i = index">
+                    <input type="radio" formControlName="gender" name="gender" id="{{sx}}-{{i}}" [value]="sx">
+                    <label for="{{sx}}-{{i}}">{{sx}}</label>
+                </div>
+            </div>
+
+            <!-- form grouping -->
+            <div formGroupName="loginDetails" class="mt-3 mb-3">
+                <div class="form-group mt-3 mb-3">
+                    <label for="email">Email Address: <span class="text-danger">*</span></label>
+                    <input type="email" formControlName="email_id" name="email" id="email" class="form-control" placeholder="Email-id">
+                    
+                    <div *ngIf="getControl.loginDetails.get('email_id')?.invalid && getControl.loginDetails.get('email_id')?.touched" class="text-danger">
+                        <div *ngIf="getControl.loginDetails.get('email_id')?.errors?.required">Email is required.</div>
+                        <div *ngIf="getControl.loginDetails.get('email_id')?.errors?.email">Please enter valid email.</div>
+                        <div *ngIf="getControl.loginDetails.get('email_id')?.errors?.restrictedEmail">This email not be use.</div>
+                    </div>
+                    
+                    <!-- also you can use this way-->
+                    Invalid: {{registrationForm.get('loginDetails.email_id')?.invalid}}
+                    Required: {{registrationForm.get('loginDetails.email_id')?.errors?.required}}
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <label for="phno">Mobile Number: <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="mobile_no" name="phno" id="phno" class="form-control" placeholder="Mobile Number">
+
+                    <div *ngIf="getControl.loginDetails.get('mobile_no')?.invalid && getControl.loginDetails.get('mobile_no')?.touched" class="text-danger">
+                        <div *ngIf="getControl.loginDetails.get('mobile_no')?.errors?.required">Mobile No is required.</div>
+                        <div *ngIf="getControl.loginDetails.get('mobile_no')?.errors?.minlength">Please enter 10-12 digits mobile number.</div>
+                        <div *ngIf="getControl.loginDetails.get('mobile_no')?.errors?.maxlength">Please enter 10-12 digits mobile number.</div>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <label for="pwd">Password: <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="password" name="pwd" id="pwd" class="form-control" placeholder="Password">
+
+                    <div *ngIf="getControl.loginDetails.get('password')?.invalid && getControl.loginDetails.get('password')?.touched" class="text-danger">
+                        <div *ngIf="getControl.loginDetails.get('password')?.errors?.required">Password is required.</div>
+                        <div *ngIf="getControl.loginDetails.get('password')?.errors?.minlength">Min length is 6.</div>
+                        <div *ngIf="getControl.loginDetails.get('password')?.errors?.maxlength">Max length is 16.</div>
+                    </div>
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <label for="cpwd">Confirm Password: <span class="text-danger">*</span></label>
+                    <input type="text" formControlName="confirm_password" name="cpwd" id="cpwd" class="form-control" placeholder="Confirm Password">
+
+                    <div *ngIf="getControl.loginDetails.get('confirm_password')?.invalid && getControl.loginDetails.get('confirm_password')?.touched" class="text-danger">
+                        <div *ngIf="getControl.loginDetails.get('confirm_password')?.errors?.required">Confirm Password is required.</div>
+                        <div *ngIf="getControl.loginDetails.get('confirm_password')?.errors?.confirmPasswordNotMatch">Confirm Password not match.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <button type="button" class="btn btn-sm btn-warning" (click)="addSkills()">Add Skills</button>
+            </div>
+
+            <div formArrayName="skills">
+                <div class="form-group mt-3 mb-3" *ngIf="skillControl.length > 0">
+                    <div *ngFor="let skill of skillControl; let i = index">
+                        <label>Skill {{i+1}}:</label>
+                        <input type="text" class="form-control" [formControlName]="i">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="removeSkill(i)">[x]</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register Me</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-8">
+        {{registrationForm.value | json}}
+
+        <h3 class="mt-5">SetValu & patchValue works also here, same as TDF</h3>
+        <button class="btn btn-primary" (click)="setValue()">setValue</button>
+        <br/><br/>
+        <button class="btn btn-primary" (click)="patchValue()">patchValue</button>
+
+        <hr>
+        <a href="#" class="btn btn-danger" (click)="deleteFbPosts($event)">Delete Posts</a>
+        <h4>FireBase Posts</h4>
+        {{fireBasePosts|json}}
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div [style.margin-top.px]="10" *ngIf="userRecords.length > 0">
+    <h4>User Records Showing Below:</h4>
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th>SL</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>COMPANY</th>
+            <th>SALARY</th>
+            <th>DESIGNATION</th>
+            <th>SKILLS</th>
+            <th>IS MARRIED</th>
+        </tr>
+        <tr *ngFor="let usr of userRecords; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{usr.name | uppercase}}</td>
+            <td>{{usr.age}}</td>
+            <td>{{usr.company | titlecase}}</td>
+            <td>{{usr.salary | currency:'INR':'symbol':'1.2-2'}}</td>
+            <td>{{usr.designation | lowercase}}</td>
+            <td>
+                <ul *ngIf="usr.skills.length > 0; else noSkill">
+                    <li *ngFor="let skl of usr.skills">{{skl.name}} - {{skl.rating}}</li>
+                </ul>
+                <ng-template #noSkill><span [ngClass]="['text-danger']">No Skills</span></ng-template>
+            </td>
+            <td>{{usr.isMarried ? 'YES' : 'NO'}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<h3>User Details</h3>
+<span>Name: {{usersList[getParamId - 1].name}}</span> <br/>
+<span>Email: {{usersList[getParamId - 1].email}}</span> <br/>
+<span>Mobile: {{usersList[getParamId - 1].phno}}</span> <br/>
+<span>Age: {{usersList[getParamId - 1].age}}</span> <br/>
+
+<div class="row">
+    <div class="col-sm-6">
+        <ul>
+            <li>
+                <a [routerLink]="['/nested-routing', getParamId, getParamName, 'skill', 'Laravel']">Laravel</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', getParamId, getParamName, 'skill', 'Angular']">Angular</a>
+            </li>
+            <li>
+                <a [routerLink]="['/nested-routing', getParamId, getParamName, 'skill', 'Vue Js']">Vue Js</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <router-outlet></router-outlet>
+    </div>
+</div>

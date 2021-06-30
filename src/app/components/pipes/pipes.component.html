@@ -1,0 +1,221 @@
+<h2 class="pg-heading">Pipes</h2>
+<hr/>
+
+<div>
+    <h4>Examples</h4>
+    <div>
+        <label>Uppercase Pipe:</label>
+        <h3>{{demoText | uppercase}}</h3>
+    </div>
+    <div>
+        <label>Lowercae Pipe:</label>
+        <h3>{{demoText | lowercase}}</h3>
+    </div>
+    <div>
+        <label>Titlecase Pipe:</label>
+        <h3>{{demoText | titlecase}}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Currency CAD Pipe:</label>
+        <h3>{{demoPrice | currency:'CAD'}}</h3>
+    </div>
+    <div>
+        <label>Currency INR Pipe:</label>
+        <h3>{{demoPrice | currency:'INR'}}</h3>
+    </div>
+    <div>
+        <label>Currency USD Pipe:</label>
+        <h3>{{demoPrice | currency:'USD'}}</h3>
+    </div>
+    <div>
+        <label>Currency INR - CODE Pipe:</label>
+        <h3>{{demoPrice | currency:'INR':'code'}}</h3>
+    </div>
+    <div>
+        <label>Currency USD - CODE Pipe:</label>
+        <h3>{{demoPrice | currency:'USD':'code'}}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Date pipe:</label>
+        <h3>{{today | date }}</h3>
+    </div>
+    <div>
+        <label>Date medium pipe:</label>
+        <h3>{{today | date:'medium' }}</h3>
+    </div>
+    <div>
+        <label>Date short pipe:</label>
+        <h3>{{today | date:'short' }}</h3>
+    </div>
+    <div>
+        <label>Date long pipe:</label>
+        <h3>{{today | date:'long' }}</h3>
+    </div>
+    <div>
+        <label>Date full pipe:</label>
+        <h3>{{today | date:'full' }}</h3>
+    </div>
+    <div>
+        <label>Date shortDate pipe:</label>
+        <h3>{{today | date:'shortDate' }}</h3>
+    </div>
+    <div>
+        <label>Date mediumDate pipe:</label>
+        <h3>{{today | date:'mediumDate' }}</h3>
+    </div>
+    <div>
+        <label>Date longDate pipe:</label>
+        <h3>{{today | date:'longDate' }}</h3>
+    </div>
+    <div>
+        <label>Date fullDate pipe:</label>
+        <h3>{{today | date:'fullDate' }}</h3>
+    </div>
+    <div>
+        <label>Date shortTime pipe:</label>
+        <h3>{{today | date:'shortTime' }}</h3>
+    </div>
+    <div>
+        <label>Date mediumTime pipe:</label>
+        <h3>{{today | date:'mediumTime' }}</h3>
+    </div>
+    <div>
+        <label>Date longTime pipe:</label>
+        <h3>{{today | date:'longTime' }}</h3>
+    </div>
+    <div>
+        <label>Date fullTime pipe:</label>
+        <h3>{{today | date:'fullTime' }}</h3>
+    </div>
+    <div>
+        <label>Date d/m/y pipe:</label>
+        <h3>{{today | date:'d/m/y' }}</h3>
+    </div>
+    <div>
+        <label>Date dd/mm/yy hh:mm pipe:</label>
+        <h3>{{today | date:'dd/mm/yy hh:mm' }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Json pipe:</label>
+        <h3>{{jsonData | json }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Text Slice pipe:</label>
+        <h3>{{demoText | slice:1:2 }}</h3>
+    </div>
+    <div>
+        <label>Text Slice pipe:</label>
+        <h3>{{demoText | slice:1:10 }}</h3>
+    </div>
+    <div>
+        <label>Text Slice pipe:</label>
+        <h3>{{demoText | slice:6:10 }}</h3>
+    </div>
+    <div>
+        <label>Array Slice pipe:</label>
+        <h3>{{demoArray | slice:0:2 }}</h3>
+    </div>
+    <div>
+        <label>Array Slice pipe:</label>
+        <h3>{{demoArray | slice:1:2 }}</h3>
+    </div>
+    <div>
+        <label>Array Slice pipe:</label>
+        <h3>{{demoArray | slice:3:5 }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Number pipe:</label>
+        <h3>{{demoPrice | number:'1.1-3' }}</h3>
+    </div>
+    <div>
+        <label>Number pipe:</label>
+        <h3>{{demoPrice | number:'1.1-2' }}</h3>
+    </div>
+    <div>
+        <label>Number pipe:</label>
+        <h3>{{demoPrice | number:'8.1-1' }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Percent  pipe:</label>
+        <h3>{{demoPercentage | percent  }}</h3>
+    </div>
+    <div>
+        <label>Percent  pipe:</label>
+        <h3>{{demoPercentage | percent:'1.2'  }}</h3>
+    </div>
+    <div>
+        <label>Percent  pipe:</label>
+        <h3>{{demoPercentage | percent:'10.1-2'  }}</h3>
+    </div>
+    <div>
+        <label>Percent  pipe:</label>
+        <h3>{{demoPercentage2 | percent  }}</h3>
+    </div>
+    <div>
+        <label>Percent  pipe:</label>
+        <h3>{{demoPercentage2 | percent:'1.1-2'  }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label>Chaining pipe:</label>
+        <h3>{{demoSalary | currency:'INR':'symbol':'1.2-2'}}</h3>
+    </div>
+    <div>
+        <label>Chaining pipe:</label>
+        <h3>{{demoSalary | currency:'INR':'code':'1.2-2'}}</h3>
+    </div>
+    <div>
+        <label>Chaining pipe:</label>
+        <h3>{{demoSalary | currency:'INR':'INR ':'1.2-2'}}</h3>
+    </div>
+    <div>
+        <label>Chaining pipe:</label>
+        <h3>{{today | date:"medium" | uppercase }}</h3>
+    </div>
+    <hr/>
+    <div>
+        <label [style.margin-bottom.px]="10">Custom pipe:</label>
+        <p *ngFor="let u of demoUser" [ngStyle]="{'line-height.px': 8}">{{u.name | genderSalutation:u.sex:u.married}}</p>
+    </div>
+    <div>
+        <label [style.margin-bottom.px]="10">Custom pipe: default image load</label><br/>
+        <img [src]="imageUrl | defaultImage:'https://avatars.githubusercontent.com/u/24665327?s=400&u=0cd3a411f9ffe9802f321510b046855660e39844&v=4'" [width]="100">
+    </div>
+    <div>
+        <label [style.margin-bottom.px]="10">Custom pipe: variable image load</label><br/>
+        <img [src]="imageUrl2 | defaultImage:'https://avatars.githubusercontent.com/u/24665327?s=400&u=0cd3a411f9ffe9802f321510b046855660e39844&v=4'" [attr.width]="400">
+    </div>
+    <div [ngClass]="['mt-5']">
+        <label [style.margin-bottom.px]="10">Custom pipe: string length</label>
+        <p>{{demoPara | stringLength:96}}</p>
+    </div>
+    <div>
+        <h4>Application: filter by name</h4>
+        <button class="btn btn-sm btn-primary mb-2" (click)="addNewJsonData()">Example: (Pure) Add User ({{jsonData.length}})</button>
+        <input type="text" [(ngModel)]="filterText" [class.form-control]="true" placeholder="Filter Text">
+        <div [ngClass]="'mt-3'" *ngFor="let usr of jsonData | filterJsonData:filterText:'name'">
+            <label><strong>Name:</strong> {{usr.name}} and <strong>Age:</strong> {{usr.age}}</label>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h4>Application: filter by age</h4>
+        <select [(ngModel)]="filterText2">
+            <option value="">Age</option>
+            <option *ngFor="let x of jsonData" value="{{x.age}}">{{x.age}}</option>
+        </select>
+        <div [ngClass]="'mt-3'" *ngFor="let usr of jsonData | filterJsonData:filterText2:'age'">
+            <label><strong>Name:</strong> {{usr.name}} and <strong>Age:</strong> {{usr.age}}</label>
+        </div>
+    </div>
+    <hr/>
+    <h4>Async Pipe</h4>
+    <button class="btn btn-danger" (click)="asyncExp()">Click & Wait</button>
+    <br/>output (without async pipe): {{asyncData|json}}
+    <br/>output (with async pipe): {{asyncData|async}}
+</div>

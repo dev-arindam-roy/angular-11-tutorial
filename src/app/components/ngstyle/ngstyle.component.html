@@ -1,0 +1,49 @@
+<h2 class="pg-heading">NgStyle [ngStyle]</h2>
+<hr/>
+
+<div>
+    <h4>Example 1:</h4>
+    <h1 [ngStyle]="{'color' : 'blue', 'font-weight' : '700', 'text-decoration' : 'underline'}">What is Lorem Ipsum?</h1>
+    <p [ngStyle]="{'margin-top.px' : 10, 'font-size.px' : 24}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+</div>
+
+<hr/>
+
+<div>
+    <h4>Example 2:</h4>
+    <select (change)="applyFontSize($event)">
+        <option value="">Size</option>
+        <option *ngFor="let x of getRange(12, 60, 2)" value="{{x}}">{{x}}</option>
+    </select>
+    <select (change)="applyFontColor($event)">
+        <option value="">Color</option>
+        <option *ngFor="let x of fontColor" value="{{x}}">{{x}}</option>
+    </select>
+    <select (change)="applyFontWight($event)">
+        <option value="">Weight</option>
+        <option *ngFor="let x of getRange(500, 900, 100)" value="{{x}}">{{x}}</option>
+    </select>
+    <p [ngStyle]="{'margin-top.px' : 10, 'font-size.px' : fontSize, 'color' : setFontColor, 'font-weight' : setFontWeight}">Please apply style on ME!!!</p>
+</div>
+
+<hr/>
+
+<div>
+    <h4>Example 3:</h4>
+    <div>
+        <label><b>Size:</b></label>
+        <span *ngFor="let x of getRange(14, 44, 2)" [ngStyle]="{'margin-left.px' : 5}">
+            <input type="radio" name="fs" value="{{x}}" [checked]="x == fSize" (change)="applyStyleObject($event, 'size')">{{x}}px</span>
+    </div>
+    <div>
+        <label><b>Color:</b></label>
+        <span *ngFor="let x of fontColor" [ngStyle]="{'margin-left.px' : 5}">
+            <input type="radio" name="fc" value="{{x}}" [checked]="x == fColor" (change)="applyStyleObject($event, 'color')">{{x}}</span>
+    </div>
+    <div>
+        <label><b>Wight:</b></label>
+        <span *ngFor="let x of getRange(500, 900, 100)" [ngStyle]="{'margin-left.px' : 5}">
+            <input type="radio" name="fw" value="{{x}}" [checked]="x == fWeight" (change)="applyStyleObject($event, 'weight')">{{x}}</span>
+    </div>
+    <p [ngStyle]="applyObject">Please apply style on ME!!!</p>
+</div>

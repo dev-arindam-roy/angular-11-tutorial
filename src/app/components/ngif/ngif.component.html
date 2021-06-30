@@ -1,0 +1,110 @@
+<h2 class="pg-heading">NgIf (*ngIf)</h2>
+<hr />
+
+<div>
+    <h4>Example 1:</h4>
+    <div>
+        <input type="radio" name="colorbox" value="blue" (click)="showColorBox($event)"> Blue Box
+        <input type="radio" name="colorbox" value="red" (click)="showColorBox($event)"> Red Box
+        <input type="radio" name="colorbox" value="green" (click)="showColorBox($event)"> Green Box
+    </div>
+    <div>
+        <div class="box blue" *ngIf="colorbox === 'blue'"></div>
+        <div class="box red" *ngIf="colorbox === 'red'"></div>
+        <div class="box green" *ngIf="colorbox === 'green'"></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<hr />
+<div>
+    <h4>Example 2:</h4>
+    <div>
+        <input type="radio" name="colorbox2" (click)="showColorBox2('blue')"> Blue Box
+        <input type="radio" name="colorbox2" (click)="showColorBox2('red')"> Red Box
+        <input type="radio" name="colorbox2" (click)="showColorBox2('green')"> Green Box
+    </div>
+    <div>
+        <div class="box blue" *ngIf="colorbox2 === 'blue'"></div>
+        <div class="box red" *ngIf="colorbox2 === 'red'"></div>
+        <div class="box green" *ngIf="colorbox2 === 'green'"></div>
+        <div class="clearfix"></div>
+    </div>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 3:</h4>
+    <div>
+        <select (change)="onChangeBox1($event)">
+            <option value="box">BOX</option>
+            <option value="blue">BLUE BOX</option>
+            <option value="red">RED BOX</option>
+            <option value="green">GREEN BOX</option>
+        </select>
+    </div>
+    <div>
+        <div class="box blue" *ngIf="(dropDown1 === 'blue' || dropDown1 == '' || dropDown1 === 'box')"></div>
+        <div class="box red" *ngIf="(dropDown1 === 'red' || dropDown1 == '' || dropDown1 === 'box')"></div>
+        <div class="box green" *ngIf="(dropDown1 === 'green' || dropDown1 == '' || dropDown1 === 'box')"></div>
+        <div class="clearfix"></div>
+    </div>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 4:</h4>
+    <div>
+        <input type="checkbox" value="blue" (click)="checkColor1($event)"> Blue Box
+        <input type="checkbox" value="red" (click)="checkColor1($event)"> Red Box
+        <input type="checkbox" value="green" (click)="checkColor1($event)"> Green Box
+    </div>
+    <div *ngIf="checkbox1.length > 0">
+        <div *ngFor="let color of checkbox1" [ngClass]="['box', color]">{{color}}</div>
+        <div class="clearfix"></div>
+    </div>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 5:</h4>
+    <div>
+        <input type="radio" name="ex00" value="1" (change)="showHideTextRadio($event)">Show Text
+        <input type="radio" name="ex00" value="0" (change)="showHideTextRadio($event)">Hide Text
+    </div>
+    <h1 *ngIf="showHideText1 == 1; else noTextBlock">If - Else Test With Radio</h1>
+    <ng-template #noTextBlock>
+        <p>???????</p>
+    </ng-template>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 6:</h4>
+    <div>
+        <input type="checkbox" (change)="showHideTextCheckbox($event)">Show/Hide Text
+    </div>
+    <div *ngIf="showHideText2 == 1; then showBlock; else dashBlock"></div>
+    <ng-template #showBlock><h1>THEN content ELSE content Test With Checkbox</h1></ng-template>
+    <ng-template #dashBlock>-------------</ng-template>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 7:</h4>
+    <div>
+        <input type="checkbox" (change)="showHideTextCheckbox2($event)">Show/Hide Text (Boolean) (ng-container)
+    </div>
+    <ng-container *ngIf="showHideText3; then showBlock; else dashBlock"></ng-container>
+    <ng-template #showBlock><h1>THEN content ELSE content Test With Checkbox</h1></ng-template>
+    <ng-template #dashBlock>-------------</ng-template>
+    <hr />
+</div>
+
+<div>
+    <h4>Example 8: (By Service)</h4>
+    <div *ngIf="dataObj1.length > 0">
+        <ul *ngFor="let obj of dataObj1" [ngStyle]="{'color' : (obj.technology === 'SERVER-SIDE') ? 'green' : 'blue'}"> <b>{{obj.technology}}</b>
+            <li>{{obj.languages}}</li>
+        </ul>
+    </div>
+</div>

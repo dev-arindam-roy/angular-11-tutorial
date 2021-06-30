@@ -1,0 +1,12 @@
+<div class="mt-5">
+    <h3>User Record #{{singleSl+1}}</h3>
+    <hr/>
+    <span><strong>Name & Age:</strong> {{singleUser.name}} - {{singleUser.age}}</span><br/>
+    <span><strong>Company & Salary:</strong> {{singleUser.company}} - {{singleUser.salary | currency:'INR':'symbol'}}</span><br/>
+    <span><strong>Designation & Skills:</strong>{{singleUser.designation}}</span>
+    <ul *ngIf="singleUser.skills.length > 0; else noSkill">
+        <li *ngFor="let x of singleUser.skills">{{x.name}} = {{x.rating}}</li>
+    </ul>
+    <ng-template #noSkill><span>No Skills</span></ng-template>
+    <ng-content></ng-content>
+</div>

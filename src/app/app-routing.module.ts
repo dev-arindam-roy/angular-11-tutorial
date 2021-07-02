@@ -28,6 +28,9 @@ import { NestedChildTwoComponent } from './components/routing/nested-route/neste
 import { RouteGaurdComponent } from './components/route-gaurd/route-gaurd.component';
 import { TemplateFormComponent } from './components/template-form/template-form.component';
 import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { ToastrComponent } from './components/toastr/toastr.component';
+import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.component';
+import { FirebaseLoginComponent } from './components/firebase-login/firebase-login.component';
  
 const routes: Routes = [
   {
@@ -179,6 +182,18 @@ const routes: Routes = [
   {
     path: 'reactive-form',
     component: ReactiveFormComponent
+  },
+  {
+    path: 'toastr',
+    component: ToastrComponent
+  },
+  {
+    path: 'sweet-alert',
+    component: SweetAlertComponent
+  },
+  {
+    path: 'firebase-login',
+    component: FirebaseLoginComponent
   },
 
   // 404 redirection

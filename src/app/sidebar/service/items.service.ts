@@ -83,6 +83,18 @@ export class ItemsService {
     {
       name: 'Reactive Form',
       link: 'reactive-form'
+    },
+    {
+      name: 'Toastr',
+      link: 'toastr'
+    },
+    {
+      name: 'Sweet Alert2',
+      link: 'sweet-alert'
+    },
+    {
+      name: 'Firebase Login App',
+      link: 'firebase-login'
     }
   ];
 

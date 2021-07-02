@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -13,6 +16,8 @@ import { AuthGuardService } from './common-services/auth-guard.service';
 import { ChangeDetectService } from './common-services/change-detect.service';
 import { FirebaseServiceService } from './common-services/firebase-service.service';
 import { HttpInterseptorService } from './common-services/http-interseptor.service';
+import { AuthService as FbAuthService } from './components/firebase-login/service/auth.service';
+import { FirebaseTokenInterseptorService } from './common-services/firebase-token-interseptor.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,6 +64,9 @@ import { RouteGaurdComponent } from './components/route-gaurd/route-gaurd.compon
 import { TemplateFormComponent } from './components/template-form/template-form.component';
 import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
 import { LoadingSpinerComponent } from './components/loading-spiner/loading-spiner.component';
+import { ToastrComponent } from './components/toastr/toastr.component';
+import { SweetAlertComponent } from './components/sweet-alert/sweet-alert.component';
+import { FirebaseLoginComponent } from './components/firebase-login/firebase-login.component';
 
 @NgModule({
   declarations: [
@@ -105,10 +113,25 @@ import { LoadingSpinerComponent } from './components/loading-spiner/loading-spin
     RouteGaurdComponent,
     TemplateFormComponent,
     ReactiveFormComponent,
-    LoadingSpinerComponent
+    LoadingSpinerComponent,
+    ToastrComponent,
+    SweetAlertComponent,
+    FirebaseLoginComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      preventDuplicates: true,
+      countDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      positionClass: 'toast-top-right',
+      enableHtml: true,
+      closeButton: true
+    }),
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -120,6 +143,11 @@ import { LoadingSpinerComponent } from './components/loading-spiner/loading-spin
       useClass: HttpInterseptorService,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FirebaseTokenInterseptorService,
+      multi: true
+    },
     ItemsService,
     ngIfDataService,
     ngSwitchDataService,
@@ -127,7 +155,8 @@ import { LoadingSpinerComponent } from './components/loading-spiner/loading-spin
     AuthServiceService,
     AuthGuardService,
     ChangeDetectService,
-    FirebaseServiceService
+    FirebaseServiceService,
+    FbAuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -54,25 +54,28 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   getPosts() {
-    this.http.get('https://angular-001-d31a4-default-rtdb.firebaseio.com/posts.json')
-    .pipe(map((response: any) => {
-      let posts = [];
-      for (let key in response) {
-        posts.push({...response[key], key})
-      }
-      return posts;
-    })).subscribe(response => {
-      console.log(response);
-      this.fireBasePosts = response;
-      this.isLoading = false;
-    }, (error) => {
-      alert(error.message)
-    });
 
-    // this.fbService.fetchPost().subscribe(response => {
+    // Normal Test
+    // this.http.get('https://angular-001-d31a4-default-rtdb.firebaseio.com/posts.json')
+    // .pipe(map((response: any) => {
+    //   let posts = [];
+    //   for (let key in response) {
+    //     posts.push({...response[key], key})
+    //   }
+    //   return posts;
+    // })).subscribe(response => {
     //   console.log(response);
     //   this.fireBasePosts = response;
+    //   this.isLoading = false;
+    // }, (error) => {
+    //   alert(error.message)
     // });
+
+    //with firebase auth
+    this.fbService.fetchPost().subscribe(response => {
+      console.log(response);
+      this.fireBasePosts = response;
+    });
   }
 
   get getControl() {

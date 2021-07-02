@@ -1,0 +1,58 @@
+<h2 class="pg-heading">Firebase Login Application</h2>
+<hr/>
+
+<div class="row mt-5">
+    <div class="col-sm-4">
+        <div class="alert alert-danger mb-3" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+        <form #signInUpFrm="ngForm" (ngSubmit)="onFormSubmit()" novalidate>
+            <div class="form-group mt-2 mb-3">
+                <label for="email">Email:</label>
+                <input 
+                    type="text" 
+                    name="email" 
+                    id="email" 
+                    class="form-control" 
+                    placeholder="Email"
+                    required
+                    email
+                    ngModel 
+                    #email="ngModel"
+                    [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+                    [class.is-valid]="email.valid">
+                
+                <div class="help-block" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <!-- <span class="text-danger" *ngIf="email.errors?.required">Please enter email</span>
+                    <span class="text-danger" *ngIf="email.errors?.email">Please enter valid email</span> -->
+                    <span class="text-danger">{{displayValidationErrors('email')}}</span>
+                </div>
+            </div>
+            <div class="form-group mt-2 mb-3">
+                <label for="password">Password:</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Password"
+                    minlength="6"
+                    maxlength="10"
+                    required
+                    ngModel
+                    #password="ngModel"
+                    [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+                    [class.is-valid]="password.valid">
+
+                <div class="help-block" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <!-- <span class="text-danger" *ngIf="password.errors?.required">Please enter password</span>
+                    <span class="text-danger" *ngIf="password.errors?.minlength">Password required atleast 6 char</span> -->
+                    <span class="text-danger">{{displayValidationErrors('password')}}</span>
+                </div>
+            </div>
+            <div class="form-group mt-2 mb-3">
+                <button type="submit" class="btn btn-success btn-sm" [disabled]="signInUpFrm.invalid">{{isSignInMode ? 'SignIn' : 'SignUp'}}</button>
+                <button type="button" class="btn btn-primary btn-sm" [ngStyle]="{'margin-left.px' : 5}" (click)="modeChange()">Switch To {{isSignInMode ? 'SignUp' : 'SignIn'}}</button>
+                <button type="button" class="btn btn-danger btn-sm" [ngStyle]="{'margin-left.px' : 5}" (click)="resetForm()" [disabled]="!signInUpFrm.dirty">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>

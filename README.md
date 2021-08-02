@@ -8,7 +8,14 @@
   https://dev-arindam-roy.github.io/angular-11-tutorial/dist/examples/#/reactive-form
   </a>
   
+  ```
+  1. angular.json
+    1.1 index.html
+    1.2 main.ts
+  2. AppModule
+  3. AppComponent
   
+  ```
   
   ```
   npm install -g @angular/cli

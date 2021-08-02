@@ -43,5 +43,5 @@ ng g p PIPE_NAME
 
 ng g d DIRECTIVE_NAME
 
-Commands: (Typ
+
   ```
